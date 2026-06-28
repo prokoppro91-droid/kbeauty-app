@@ -15,16 +15,16 @@ export function Navbar({
   const { count } = useCart();
 
   return (
-    <div className="sticky top-0 z-40 border-b border-line bg-surface/80 backdrop-blur-xl">
-      <div className="wrap flex h-[64px] items-center gap-4">
+    <div className="glass sticky top-0 z-40 border-x-0 border-t-0">
+      <div className="wrap flex h-[68px] items-center gap-4">
         <a href="#top" className="flex shrink-0 items-center gap-2.5">
           <span
-            className="grid h-9 w-9 place-items-center rounded-[var(--r-sm)] font-display text-[15px] font-bold text-[var(--on-brand)]"
-            style={{ background: "linear-gradient(135deg,var(--brand),var(--brand-strong))" }}
+            className="grid h-10 w-10 place-items-center rounded-[var(--r-md)] font-display text-[15px] font-bold text-[var(--on-brand)] shadow-[var(--glow)]"
+            style={{ background: "var(--grad-brand)" }}
           >
             KB
           </span>
-          <strong className="hidden font-display text-[17px] sm:inline">K-Beauty Profi</strong>
+          <strong className="hidden font-display text-[18px] sm:inline">K-Beauty Profi</strong>
         </a>
 
         <label className="relative ml-auto w-full max-w-[420px]">
@@ -33,7 +33,7 @@ export function Navbar({
             value={query}
             onChange={(e) => onQuery(e.target.value)}
             placeholder="Пошук засобу або бренду…"
-            className="h-10 w-full rounded-[var(--r-pill)] border border-line bg-surface-2 pl-11 pr-4 text-[14px] text-ink outline-none transition-colors focus:border-brand"
+            className="glass h-11 w-full rounded-[var(--r-pill)] pl-11 pr-4 text-[14px] text-ink outline-none transition-colors focus:border-brand"
           />
         </label>
 
@@ -44,7 +44,7 @@ export function Navbar({
           onClick={onCart}
           whileTap={{ scale: 0.92 }}
           aria-label="Кошик"
-          className="relative grid h-10 w-10 shrink-0 place-items-center rounded-full border border-line bg-surface text-ink transition-colors hover:border-brand"
+          className="glass relative grid h-11 w-11 shrink-0 place-items-center rounded-full text-ink transition-colors hover:border-brand"
         >
           <ShoppingBag size={18} />
           {count > 0 && (

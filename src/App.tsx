@@ -26,26 +26,35 @@ function App() {
     <div id="top">
       <Navbar query={query} onQuery={setQuery} onCart={() => setCartOpen(true)} />
 
-      <main className="wrap section stack" style={{ gap: "var(--sp-12)" }}>
+      <main className="wrap section stack" style={{ gap: "var(--sp-16)" }}>
         {/* герой */}
-        <section className="stack" style={{ gap: "var(--sp-4)", paddingTop: "var(--sp-6)" }}>
-          <motion.span className="overline" variants={fadeUp} custom={0} initial="hidden" animate="show">
-            Корейський догляд · Quiet Luxury
-          </motion.span>
-          <motion.h1 className="t-display measure-wide" variants={fadeUp} custom={1} initial="hidden" animate="show">
-            Преміальна корея <em style={{ color: "var(--brand-strong)" }}>з підбором</em> під вашу шкіру
-          </motion.h1>
-          <motion.p className="t-lead measure" variants={fadeUp} custom={2} initial="hidden" animate="show">
-            Кураторський каталог від косметолога: догляд і професійні засоби. Можливість придбати
-            на розпив, доставка по Україні та за кордон.
-          </motion.p>
-          <motion.div className="row" style={{ gap: "var(--sp-3)", flexWrap: "wrap" }}
-            variants={fadeUp} custom={3} initial="hidden" animate="show">
-            <Button variant="primary" size="lg" onClick={() => document.getElementById("catalog")?.scrollIntoView({ behavior: "smooth" })}>
-              ✨ До каталогу
-            </Button>
-            <Button variant="ghost" size="lg">Підібрати догляд →</Button>
-          </motion.div>
+        <section className="relative overflow-hidden rounded-[var(--r-xl)] border border-[var(--glass-brd)]"
+          style={{ backgroundImage: "var(--grad-hero)", paddingBlock: "clamp(48px,8vw,104px)", paddingInline: "clamp(20px,5vw,64px)" }}>
+          {/* плаваючі блоби */}
+          <span className="blob" style={{ width: 260, height: 260, top: -60, left: -40, background: "var(--brand)" }} />
+          <span className="blob" style={{ width: 220, height: 220, bottom: -50, right: -30, background: "var(--accent)", animationDelay: "1.5s" }} />
+          <span className="blob" style={{ width: 160, height: 160, top: 40, right: 120, background: "var(--peach)", animationDelay: "3s" }} />
+
+          <div className="relative stack" style={{ gap: "var(--sp-5)", maxWidth: 680 }}>
+            <motion.span className="overline inline-flex w-fit items-center gap-2 rounded-[var(--r-pill)] glass px-4 py-2"
+              variants={fadeUp} custom={0} initial="hidden" animate="show">
+              ✨ Корейський догляд · кураторський відбір
+            </motion.span>
+            <motion.h1 className="t-display" variants={fadeUp} custom={1} initial="hidden" animate="show">
+              Сяйво вашої шкіри <span className="text-gradient">починається тут</span>
+            </motion.h1>
+            <motion.p className="t-lead measure" variants={fadeUp} custom={2} initial="hidden" animate="show">
+              Преміальна корея від косметолога: догляд і професійні засоби. Можна придбати
+              на розпив, доставка по Україні та за кордон.
+            </motion.p>
+            <motion.div className="row" style={{ gap: "var(--sp-3)", flexWrap: "wrap" }}
+              variants={fadeUp} custom={3} initial="hidden" animate="show">
+              <Button variant="primary" size="lg" onClick={() => document.getElementById("catalog")?.scrollIntoView({ behavior: "smooth" })}>
+                ✨ До каталогу
+              </Button>
+              <Button variant="ghost" size="lg">Підібрати догляд →</Button>
+            </motion.div>
+          </div>
         </section>
 
         {/* каталог */}

@@ -47,14 +47,15 @@ export function Catalog({ query, onOpen }: { query: string; onOpen: (p: Product)
     <section id="catalog" className="stack" style={{ gap: "var(--sp-5)" }}>
       {/* розділи */}
       <div className="flex flex-wrap items-center gap-3">
-        <div className="inline-flex w-fit gap-1 rounded-[var(--r-pill)] border border-line bg-surface p-[5px] shadow-[var(--e-1)]">
+        <div className="glass inline-flex w-fit gap-1 rounded-[var(--r-pill)] p-[5px] shadow-[var(--e-1)]">
           {(["care", "pro"] as Group[]).map((g) => (
             <button
               key={g}
               onClick={() => switchGroup(g)}
-              className={`h-11 rounded-[var(--r-pill)] px-5 text-[14px] font-semibold transition-colors ${
-                group === g ? "bg-ink text-surface" : "text-muted hover:text-ink"
+              className={`h-11 rounded-[var(--r-pill)] px-5 text-[14px] font-bold transition-colors ${
+                group === g ? "text-[var(--on-brand)] shadow-[var(--glow)]" : "text-muted hover:text-ink"
               }`}
+              style={group === g ? { background: "var(--grad-brand)" } : undefined}
             >
               {g === "care" ? "🧴 Догляд" : "💉 Професійна"}
             </button>
@@ -72,7 +73,7 @@ export function Catalog({ query, onOpen }: { query: string; onOpen: (p: Product)
         <select
           value={sort}
           onChange={(e) => setSort(e.target.value as Sort)}
-          className="ml-auto h-11 rounded-[var(--r-pill)] border border-line bg-surface px-4 text-[14px] text-ink outline-none"
+          className="glass ml-auto h-11 rounded-[var(--r-pill)] px-4 text-[14px] text-ink outline-none"
         >
           <option value="pop">Спочатку популярні</option>
           <option value="new">Спочатку новинки</option>

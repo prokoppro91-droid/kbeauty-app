@@ -25,15 +25,15 @@ export function ProductCard({
 
   return (
     <motion.article
-      className="group relative flex h-full flex-col overflow-hidden rounded-[var(--r-lg)] border border-line bg-surface shadow-[var(--e-2)]"
-      whileHover={{ y: -4, boxShadow: "var(--e-3)" }}
-      transition={{ duration: 0.2, ease: [0.2, 0.7, 0.2, 1] }}
+      className="glass group relative flex h-full flex-col overflow-hidden rounded-[var(--r-lg)] shadow-[var(--e-2)]"
+      whileHover={{ y: -6, boxShadow: "var(--e-3)" }}
+      transition={{ type: "spring", stiffness: 320, damping: 22 }}
     >
       {/* зображення / емодзі-фолбек */}
       <button
         type="button"
         onClick={() => onOpen?.(p.id)}
-        className="relative block h-[180px] w-full overflow-hidden bg-[radial-gradient(120%_90%_at_50%_0%,var(--surface)_0%,transparent_60%),linear-gradient(135deg,var(--surface-2),var(--surface))] text-left"
+        className="relative block h-[184px] w-full overflow-hidden bg-[radial-gradient(120%_95%_at_50%_0%,var(--brand-soft)_0%,transparent_62%),linear-gradient(135deg,var(--accent-soft),var(--surface-2))] text-left"
         aria-label={`Відкрити ${p.name}`}
       >
         <span className="absolute inset-0 grid place-items-center text-[46px] transition-transform duration-[400ms] ease-[cubic-bezier(.2,.7,.2,1)] group-hover:scale-[1.08]">
@@ -45,7 +45,7 @@ export function ProductCard({
             −{discount}%
           </span>
         )}
-        <span className="absolute bottom-3 left-3 rounded-[var(--r-pill)] bg-surface/90 px-2.5 py-1 text-[11px] font-bold text-ink backdrop-blur-sm">
+        <span className="glass absolute bottom-3 left-3 rounded-[var(--r-pill)] px-2.5 py-1 text-[11px] font-bold text-ink">
           {p.brand}
         </span>
         {p.badge && <span className={`badge badge--${p.badge} absolute right-3 top-3`}>{badgeLabel[p.badge] ?? p.badge}</span>}
@@ -95,9 +95,12 @@ export function ProductCard({
           <motion.button
             type="button"
             onClick={() => onAdd?.(p.id)}
+            whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.9 }}
+            transition={{ type: "spring", stiffness: 500, damping: 18 }}
             aria-label={inCart ? "У кошику" : "Додати в кошик"}
-            className={`grid h-[42px] w-[42px] place-items-center rounded-[var(--r-md)] transition-colors ${inCart ? "bg-mint text-[var(--ok)]" : "bg-ink text-surface hover:bg-[var(--brand-strong)]"}`}
+            className={`grid h-[44px] w-[44px] place-items-center rounded-[var(--r-md)] text-[var(--on-brand)] transition-colors ${inCart ? "bg-mint !text-[var(--ok)]" : "shadow-[var(--glow)]"}`}
+            style={inCart ? undefined : { background: "var(--grad-brand)" }}
           >
             {inCart ? <Check size={20} /> : <Plus size={20} />}
           </motion.button>

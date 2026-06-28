@@ -13,6 +13,11 @@
     line-height:var(--lh-body);
     color:var(--text);
     background:var(--surface-1);
+    background-image:
+      radial-gradient(40% 30% at 0% 0%, var(--brand-soft) 0%, transparent 55%),
+      radial-gradient(45% 35% at 100% 5%, var(--accent-soft) 0%, transparent 55%),
+      radial-gradient(50% 40% at 100% 100%, var(--brand-tint) 0%, transparent 60%);
+    background-attachment:fixed;
     -webkit-font-smoothing:antialiased;
     text-rendering:optimizeLegibility;
     transition:background var(--dur-3) var(--ease), color var(--dur-3) var(--ease);
@@ -61,3 +66,21 @@ h1,h2,h3{font-family:var(--font-serif);font-weight:600;line-height:var(--lh-tigh
 }
 @keyframes sk{to{background-position:-200% 0}}
 @media(prefers-reduced-motion){.skeleton{animation:none}}
+
+/* Frosted-glass поверхня */
+.glass{
+  background:var(--glass);
+  backdrop-filter:blur(var(--glass-blur)) saturate(1.4);
+  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(1.4);
+  border:1px solid var(--glass-brd);
+}
+.glow{box-shadow:var(--glow)}
+.text-gradient{
+  background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;
+}
+
+/* Плавне «дихання» декоративних блобів */
+@keyframes floaty{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(0,-18px,0) scale(1.05)}}
+.blob{position:absolute;border-radius:50%;filter:blur(42px);pointer-events:none;will-change:transform;animation:floaty 9s var(--ease-inout) infinite}
+@media(prefers-reduced-motion){.blob{animation:none}}

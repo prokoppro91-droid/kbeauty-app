@@ -1,52 +1,58 @@
 /* =====================================================================
-   Базові UI-компоненти (єдині класи замість дублів)
+   Базові UI-компоненти — Soft K-beauty (glass + градієнти)
    ===================================================================== */
 
 /* КНОПКА */
 .btn{
   --h:48px;height:var(--h);padding:0 var(--sp-6);border-radius:var(--r-pill);
-  font-weight:600;font-size:var(--t-body);
+  font-weight:700;font-size:var(--t-body);
   display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-2);
-  border:1px solid transparent;transition:box-shadow var(--dur-2) var(--ease),background var(--dur-2) var(--ease);
+  border:1px solid transparent;
+  transition:box-shadow var(--dur-2) var(--ease),transform var(--dur-2) var(--spring),background var(--dur-2) var(--ease),border-color var(--dur-2) var(--ease);
   white-space:nowrap;
 }
-.btn--primary{background:linear-gradient(135deg,var(--brand),var(--brand-strong));color:var(--on-brand)}
-.btn--primary:hover{box-shadow:var(--e-3)}
-.btn--ghost{background:var(--surface);border-color:var(--border);color:var(--text)}
-.btn--ghost:hover{border-color:var(--brand)}
+.btn--primary{background:var(--grad-brand);color:var(--on-brand);box-shadow:var(--glow)}
+.btn--primary:hover{box-shadow:0 12px 36px rgba(159,122,234,.5)}
+.btn--ghost{background:var(--glass);backdrop-filter:blur(10px);border-color:var(--glass-brd);color:var(--text)}
+.btn--ghost:hover{border-color:var(--brand);color:var(--brand-strong)}
 .btn--dark{background:var(--text);color:var(--surface)}
-.btn--dark:hover{filter:brightness(1.1)}
+.btn--dark:hover{filter:brightness(1.12)}
 .btn--sm{--h:40px;padding:0 var(--sp-4);font-size:var(--t-small)}
-.btn--lg{--h:54px;padding:0 var(--sp-8)}
+.btn--lg{--h:56px;padding:0 var(--sp-8)}
 .btn:disabled{opacity:.5;cursor:not-allowed}
 
 /* ЧІП (фільтри/бренди/теги) */
 .chip{
-  height:38px;padding:0 var(--sp-4);border-radius:var(--r-pill);
+  height:40px;padding:0 var(--sp-5);border-radius:var(--r-pill);
   font-weight:600;font-size:var(--t-small);
   display:inline-flex;align-items:center;gap:var(--sp-2);
-  background:var(--surface);border:1px solid var(--border);color:var(--text-muted);
-  transition:border-color var(--dur-2) var(--ease),color var(--dur-2) var(--ease),background var(--dur-2) var(--ease);
+  background:var(--glass);backdrop-filter:blur(10px);
+  border:1px solid var(--glass-brd);color:var(--text-muted);
+  transition:border-color var(--dur-2) var(--ease),color var(--dur-2) var(--ease),
+    background var(--dur-2) var(--ease),transform var(--dur-1) var(--spring),box-shadow var(--dur-2) var(--ease);
 }
-.chip:hover{border-color:var(--brand-soft);color:var(--text)}
-.chip[aria-pressed="true"],.chip.is-active{background:var(--brand-tint);border-color:var(--brand);color:var(--text)}
+.chip:hover{color:var(--brand-strong);border-color:var(--brand-soft);transform:translateY(-1px)}
+.chip[aria-pressed="true"],.chip.is-active{
+  background:var(--grad-brand);border-color:transparent;color:var(--on-brand);box-shadow:var(--glow)}
 
 /* БЕЙДЖ */
 .badge{
   font-weight:800;font-size:var(--t-overline);letter-spacing:.04em;text-transform:uppercase;
-  padding:var(--sp-1) var(--sp-2);border-radius:var(--r-pill);
+  padding:var(--sp-1) var(--sp-3);border-radius:var(--r-pill);
 }
-.badge--hit{background:#ffe2c2;color:#a85b14}
-.badge--new{background:var(--mint);color:var(--ok)}
-.badge--sale{background:#ffe3e3;color:var(--danger)}
+.badge--hit{background:linear-gradient(135deg,#ffd6a5,#ffb4c6);color:#9a3d52}
+.badge--new{background:linear-gradient(135deg,#c7f0e0,#bfe0ff);color:var(--ok)}
+.badge--pro{background:var(--grad-soft);color:var(--accent-strong)}
+.badge--sale{background:linear-gradient(135deg,#ffc2d1,#ffb4c6);color:var(--danger)}
 
-/* КАРТКА (поверхня) */
+/* КАРТКА (скляна поверхня) */
 .card{
-  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);
+  background:var(--glass);backdrop-filter:blur(var(--glass-blur)) saturate(1.4);
+  border:1px solid var(--glass-brd);border-radius:var(--r-lg);
   box-shadow:var(--e-2);overflow:hidden;
-  transition:transform var(--dur-2) var(--ease),box-shadow var(--dur-2) var(--ease);
+  transition:transform var(--dur-2) var(--spring),box-shadow var(--dur-2) var(--ease);
 }
-.card--hover:hover{transform:translateY(-4px);box-shadow:var(--e-3)}
+.card--hover:hover{transform:translateY(-6px);box-shadow:var(--e-3)}
 .card__body{padding:var(--sp-5)}
 
 /* ІКОНКА (SVG) */
@@ -57,6 +63,7 @@
 /* перемикач теми */
 .theme-toggle{
   width:42px;height:42px;border-radius:var(--r-pill);
-  background:var(--surface-2);border:1px solid var(--border);
-  display:grid;place-items:center;transition:border-color var(--dur-2) var(--ease)}
-.theme-toggle:hover{border-color:var(--brand)}
+  background:var(--glass);backdrop-filter:blur(10px);border:1px solid var(--glass-brd);
+  display:grid;place-items:center;
+  transition:border-color var(--dur-2) var(--ease),transform var(--dur-1) var(--spring)}
+.theme-toggle:hover{border-color:var(--brand);transform:rotate(-12deg) scale(1.05)}

@@ -1,25 +1,45 @@
 /* =====================================================================
    K-BEAUTY PROFI — дизайн-токени (single source of truth)
-   Quiet Luxury: золото + пастель. Світла/темна тема.
+   Soft K-beauty: рожево-бузкова пастель, frosted-glass, м'які сяйва.
+   Світла/темна тема.
    ===================================================================== */
 :root{
-  /* БРЕНД */
-  --brand:#c9a44c; --brand-strong:#b8923a; --brand-soft:#e7d3a1; --brand-tint:#faf3e2;
-  --on-brand:#1c1a17;
-  /* ПОВЕРХНІ */
-  --surface:#ffffff; --surface-1:#fbf7f1; --surface-2:#f4ece0; --surface-3:#efe6d6;
+  /* БРЕНД — троянда + бузковий акцент */
+  --brand:#ec7fb0; --brand-strong:#e0608f; --brand-soft:#fbd5e6; --brand-tint:#fdeef5;
+  --accent:#b794f6; --accent-strong:#9f7aea; --accent-soft:#e6dcfb;
+  --peach:#ffd9c2;
+  --on-brand:#ffffff;
+
+  /* ПОВЕРХНІ — майже-білі з рожевим підтоном */
+  --surface:#ffffff; --surface-1:#fdf3f8; --surface-2:#f9e9f2; --surface-3:#f3dcea;
+
+  /* СКЛО (frosted-glass) */
+  --glass:rgba(255,255,255,.62); --glass-2:rgba(255,255,255,.45);
+  --glass-brd:rgba(255,255,255,.7); --glass-blur:18px;
+
   /* ТЕКСТ */
-  --text:#2b2622; --text-muted:#6b6256; --text-subtle:#9a8f7e;
+  --text:#3b2433; --text-muted:#8a6b7d; --text-subtle:#b69aaa;
+
   /* МЕЖІ */
-  --border:#ece3d4; --border-strong:#ddd0bb;
+  --border:#f4dded; --border-strong:#ecc8de;
+
   /* ПАСТЕЛЬ / СТАТУСИ */
-  --mint:#dff0e9; --powder:#f6e7ea; --pro:#9a6b4f; --pro-bg:#f3e9e2;
-  --ok:#2e7d5b; --warn:#b9851f; --danger:#c0392b; --tg:#2aabee; --fav:#e0719a;
+  --mint:#e1f5ee; --powder:#fbe4ed; --pro:#9f7aea; --pro-bg:#efe7fc;
+  --ok:#2e9d7a; --warn:#d98a2b; --danger:#e05a76; --tg:#2aabee; --fav:#ec5f95;
+
+  /* ГРАДІЄНТИ */
+  --grad-brand:linear-gradient(135deg,var(--brand),var(--accent-strong));
+  --grad-soft:linear-gradient(135deg,var(--brand-soft),var(--accent-soft));
+  --grad-hero:
+    radial-gradient(60% 55% at 18% 18%, rgba(236,127,176,.42) 0%, transparent 62%),
+    radial-gradient(55% 50% at 85% 12%, rgba(183,148,246,.42) 0%, transparent 60%),
+    radial-gradient(60% 60% at 70% 88%, rgba(255,217,194,.5) 0%, transparent 60%),
+    radial-gradient(50% 50% at 25% 85%, rgba(170,214,255,.34) 0%, transparent 60%);
 
   /* ТИПОГРАФІКА (8 ролей) */
   --font-serif:"Fraunces","Cormorant Garamond",Georgia,serif;
-  --font-sans:"Jost","Inter","Segoe UI",system-ui,sans-serif;
-  --t-display:clamp(2.4rem,5vw,4.25rem);
+  --font-sans:"Quicksand","Jost","Inter",system-ui,sans-serif;
+  --t-display:clamp(2.5rem,5.4vw,4.5rem);
   --t-h1:clamp(1.9rem,3.4vw,2.6rem);
   --t-h2:clamp(1.5rem,2.6vw,1.95rem);
   --t-title:1.125rem;
@@ -27,41 +47,51 @@
   --t-body:0.9375rem;
   --t-small:0.8125rem;
   --t-overline:0.75rem;
-  --lh-tight:1.12; --lh-snug:1.3; --lh-body:1.6;
-  --tracking-overline:.12em;
+  --lh-tight:1.1; --lh-snug:1.3; --lh-body:1.6;
+  --tracking-overline:.14em;
 
   /* ВІДСТУПИ (4px) */
   --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:20px; --sp-6:24px;
   --sp-8:32px; --sp-10:40px; --sp-12:48px; --sp-16:64px; --sp-20:80px; --sp-24:96px;
   --section-y:clamp(48px,7vw,96px); --gutter:clamp(16px,4vw,22px);
 
-  /* РАДІУСИ */
-  --r-xs:8px; --r-sm:12px; --r-md:16px; --r-lg:24px; --r-pill:999px;
+  /* РАДІУСИ — м'якші, бульбашкові */
+  --r-xs:10px; --r-sm:14px; --r-md:20px; --r-lg:30px; --r-xl:40px; --r-pill:999px;
 
-  /* ELEVATION */
+  /* ELEVATION — рожево-бузкові тіні */
   --e-0:none;
-  --e-1:0 1px 2px rgba(80,60,30,.06);
-  --e-2:0 4px 14px rgba(80,60,30,.08);
-  --e-3:0 12px 30px rgba(80,60,30,.10);
-  --e-4:0 22px 50px rgba(80,60,30,.14);
+  --e-1:0 2px 8px rgba(224,96,143,.08);
+  --e-2:0 10px 26px rgba(224,96,143,.12);
+  --e-3:0 18px 44px rgba(183,148,246,.18);
+  --e-4:0 30px 70px rgba(183,148,246,.26);
+  --glow:0 8px 30px rgba(236,127,176,.45);
 
   /* МОУШН */
   --dur-1:120ms; --dur-2:200ms; --dur-3:320ms; --dur-4:600ms;
   --ease:cubic-bezier(.2,.7,.2,1);
   --ease-inout:cubic-bezier(.65,.05,.36,1);
+  --spring:cubic-bezier(.34,1.56,.64,1);
 
   /* ІНШЕ */
-  --maxw:1200px; --measure:68ch;
-  --ring:0 0 0 3px rgba(201,164,76,.5);
+  --maxw:1200px; --measure:64ch;
+  --ring:0 0 0 3px rgba(236,127,176,.5);
 }
 
 :root[data-theme="dark"]{
-  --surface:#221c16; --surface-1:#15120e; --surface-2:#1e1813; --surface-3:#2a2218;
-  --text:#f0e8dc; --text-muted:#a99c8a; --text-subtle:#7d7264;
-  --border:#352d23; --border-strong:#473c2e;
-  --mint:#17251e; --powder:#281d21; --pro-bg:#2a211b;
-  --brand-soft:#4a3b20; --on-brand:#1c1a17;
-  --e-1:0 1px 2px rgba(0,0,0,.4); --e-2:0 5px 18px rgba(0,0,0,.42);
-  --e-3:0 14px 34px rgba(0,0,0,.5); --e-4:0 22px 50px rgba(0,0,0,.55);
-  --ring:0 0 0 3px rgba(214,185,110,.55);
+  /* Глибокий сливово-баклажановий */
+  --surface:#241526; --surface-1:#160d18; --surface-2:#2a1a2d; --surface-3:#341f38;
+  --glass:rgba(52,31,56,.55); --glass-2:rgba(52,31,56,.4); --glass-brd:rgba(236,127,176,.22);
+  --text:#f6e8f1; --text-muted:#c0a6b8; --text-subtle:#8c7384;
+  --border:#3a2540; --border-strong:#4d3354;
+  --brand-soft:#5a2a44; --accent-soft:#3c2c5e; --on-brand:#ffffff;
+  --mint:#16291f; --powder:#321a26; --pro-bg:#2c2140;
+  --grad-hero:
+    radial-gradient(60% 55% at 18% 18%, rgba(236,127,176,.3) 0%, transparent 62%),
+    radial-gradient(55% 50% at 85% 12%, rgba(183,148,246,.32) 0%, transparent 60%),
+    radial-gradient(60% 60% at 70% 88%, rgba(255,150,110,.22) 0%, transparent 60%),
+    radial-gradient(50% 50% at 25% 85%, rgba(110,160,220,.22) 0%, transparent 60%);
+  --e-1:0 2px 8px rgba(0,0,0,.4); --e-2:0 10px 26px rgba(0,0,0,.45);
+  --e-3:0 18px 44px rgba(0,0,0,.5); --e-4:0 30px 70px rgba(0,0,0,.6);
+  --glow:0 8px 34px rgba(236,127,176,.5);
+  --ring:0 0 0 3px rgba(236,127,176,.55);
 }

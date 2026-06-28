@@ -121,8 +121,9 @@ export function ProductModal({ product, onClose }: { product: Product | null; on
                       setTimeout(() => setAdded(false), 1400);
                     }}
                     className={`inline-flex h-12 items-center gap-2 rounded-[var(--r-md)] px-6 text-[15px] font-bold transition-colors ${
-                      added ? "bg-mint text-[var(--ok)]" : "bg-ink text-surface hover:bg-[var(--brand-strong)]"
+                      added ? "bg-mint text-[var(--ok)]" : "text-[var(--on-brand)] shadow-[var(--glow)]"
                     }`}
+                    style={added ? undefined : { background: "var(--grad-brand)" }}
                   >
                     {added ? <Check size={18} /> : <ShoppingBag size={18} />}
                     {added ? "Додано" : "У кошик"}
