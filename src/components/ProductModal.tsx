@@ -3,6 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { X, Check, FlaskConical, ShoppingBag } from "lucide-react";
 import type { Product } from "../data/products";
 import { emojiFor, catName, uah, decantSizes, decantPrice, discPct } from "../lib/catalog";
+import { imgSrc } from "./ProductCard";
 import { useCart } from "../lib/store";
 
 const badgeLabel: Record<string, string> = { hit: "Хіт продажів", new: "Новинка", pro: "Преміум" };
@@ -12,10 +13,12 @@ export function ProductModal({ product, onClose }: { product: Product | null; on
   // null = повний об'єм; число = розпив, мл
   const [ml, setMl] = useState<number | null>(null);
   const [added, setAdded] = useState(false);
+  const [imgOk, setImgOk] = useState(true);
 
   useEffect(() => {
     setMl(null);
     setAdded(false);
+    setImgOk(true);
   }, [product?.id]);
 
   useEffect(() => {
@@ -58,8 +61,13 @@ export function ProductModal({ product, onClose }: { product: Product | null; on
 
             <div className="grid sm:grid-cols-[300px_1fr]">
               {/* візуал */}
-              <div className="relative grid h-[220px] place-items-center bg-[radial-gradient(120%_90%_at_50%_0%,var(--surface)_0%,transparent_60%),linear-gradient(135deg,var(--surface-2),var(--surface))] sm:h-auto">
-                <span className="text-[88px]">{emojiFor(product)}</span>
+              <div className="relative grid h-[260px] place-items-center overflow-hidden bg-fog sm:h-auto">
+                {imgOk ? (
+                  <img src={imgSrc(product.id)} alt={product.name} onError={() => setImgOk(false)}
+                    className="absolute inset-0 h-full w-full object-cover" />
+                ) : (
+                  <span className="text-[88px]">{emojiFor(product)}</span>
+                )}
                 {disc > 0 && (
                   <span className="absolute left-4 top-4 rounded-[var(--r-pill)] bg-[#e74c3c] px-2.5 py-1 text-[11px] font-extrabold text-white">
                     −{disc}%

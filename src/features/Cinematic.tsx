@@ -53,16 +53,32 @@ export function Cinematic({ onEnd }: { onEnd: () => void }) {
   return (
     <div ref={ref} style={{ height: "560vh", position: "relative", background: "#0d0a14" }}>
       <div className="sticky top-0 h-screen overflow-hidden">
-        {/* фонові сцени, що перетікають */}
-        <Bg p={p} range={[0, 0, 0.20, 0.28]} gradient="radial-gradient(130% 110% at 50% 130%, #3a2a4f 0%, #1a1326 45%, #0a0710 100%)" />
-        <Bg p={p} range={[0.20, 0.28, 0.42, 0.50]} gradient="linear-gradient(180deg,#f7d9e6 0%,#e6d4f3 45%,#ffe0c9 100%)" />
-        <Bg p={p} range={[0.42, 0.50, 0.64, 0.72]} gradient="linear-gradient(180deg,#cfeee9 0%,#7fc6c9 45%,#327f95 100%)" />
-        <Bg p={p} range={[0.64, 0.72, 1, 1]} gradient="linear-gradient(180deg,#1e5286 0%,#0c2c4d 55%,#06182e 100%)" />
+        {/* фонові сцени, що перетікають (багатошарові — з глибиною) */}
+        <Bg p={p} range={[0, 0, 0.20, 0.28]} gradient="radial-gradient(55% 45% at 22% 28%, rgba(150,95,185,.38), transparent 62%), radial-gradient(50% 45% at 82% 68%, rgba(90,70,160,.34), transparent 62%), radial-gradient(135% 115% at 50% 132%, #3a2a4f 0%, #1a1326 46%, #0a0710 100%)" />
+        <Bg p={p} range={[0.20, 0.28, 0.42, 0.50]} gradient="radial-gradient(48% 38% at 24% 18%, rgba(255,198,228,.7), transparent 60%), radial-gradient(50% 40% at 82% 28%, rgba(202,180,255,.6), transparent 60%), linear-gradient(180deg,#f9dcea 0%,#e7d6f4 45%,#ffe2cd 100%)" />
+        <Bg p={p} range={[0.42, 0.50, 0.64, 0.72]} gradient="radial-gradient(60% 45% at 50% 8%, rgba(255,255,255,.55), transparent 55%), linear-gradient(180deg,#d4f0eb 0%,#82c9cc 45%,#327f95 100%)" />
+        <Bg p={p} range={[0.64, 0.72, 1, 1]} gradient="radial-gradient(72% 42% at 50% -8%, rgba(150,212,255,.5), transparent 60%), linear-gradient(180deg,#1e5286 0%,#0c2c4d 55%,#06182e 100%)" />
 
         {/* промені світла для підводної сцени */}
         <motion.div className="absolute inset-0 mix-blend-screen"
           style={{ opacity: useTransform(p, [0.64, 0.78], [0, 0.5]),
             background: "repeating-linear-gradient(105deg, rgba(255,255,255,.10) 0 2px, transparent 2px 60px)" }} />
+
+        {/* бульбашки, що піднімаються (підводна сцена) */}
+        <motion.div className="absolute inset-0 overflow-hidden" style={{ opacity: useTransform(p, [0.66, 0.76], [0, 1]) }}>
+          {[12, 26, 40, 54, 68, 82, 92].map((x, i) => (
+            <motion.span key={x} className="absolute rounded-full bg-white/25"
+              style={{ left: `${x}%`, bottom: -30, width: 6 + (i % 3) * 5, height: 6 + (i % 3) * 5 }}
+              animate={{ y: [0, -700], opacity: [0, 0.8, 0] }}
+              transition={{ duration: 7 + (i % 4), repeat: Infinity, ease: "easeIn", delay: i * 0.7 }} />
+          ))}
+        </motion.div>
+
+        {/* віньєтка для кінематографічності */}
+        <div className="pointer-events-none absolute inset-0" style={{ boxShadow: "inset 0 0 200px 40px rgba(0,0,0,.32)" }} />
+
+        {/* плавне розчинення у світлий каталог наприкінці */}
+        <motion.div className="pointer-events-none absolute inset-0 bg-fog" style={{ opacity: useTransform(p, [0.94, 1], [0, 1]) }} />
 
         {/* об'єкти, що левітують */}
         <Floaty p={p} emoji="🧴" left={16} top={26} drift={-360} size={64} spin={18} />

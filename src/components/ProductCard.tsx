@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Plus, Check, Heart } from "lucide-react";
 import type { Product } from "../data/products";
 import { emojiFor, canDecant, discPct, catName, uah } from "../lib/catalog";
+
+export const imgSrc = (id: number) => `${import.meta.env.BASE_URL}img/p${id}.webp`;
 
 const badgeLabel: Record<string, string> = { hit: "Бестселер", new: "Новинка", pro: "Преміум" };
 
@@ -22,6 +25,7 @@ export function ProductCard({
 }) {
   const discount = discPct(p);
   const decant = canDecant(p);
+  const [imgOk, setImgOk] = useState(true);
 
   return (
     <motion.article
@@ -36,9 +40,19 @@ export function ProductCard({
         className="relative block aspect-square w-full overflow-hidden bg-fog text-left"
         aria-label={`Відкрити ${p.name}`}
       >
-        <span className="absolute inset-0 grid place-items-center text-[72px] transition-transform duration-[600ms] ease-out group-hover:scale-[1.06]">
-          {emojiFor(p)}
-        </span>
+        {imgOk ? (
+          <img
+            src={imgSrc(p.id)}
+            alt={p.name}
+            loading="lazy"
+            onError={() => setImgOk(false)}
+            className="absolute inset-0 h-full w-full object-cover transition-transform duration-[600ms] ease-out group-hover:scale-[1.05]"
+          />
+        ) : (
+          <span className="absolute inset-0 grid place-items-center text-[72px] transition-transform duration-[600ms] ease-out group-hover:scale-[1.06]">
+            {emojiFor(p)}
+          </span>
+        )}
         {p.badge && (
           <span className={`badge badge--${p.badge} absolute left-5 top-5`}>{badgeLabel[p.badge] ?? p.badge}</span>
         )}
