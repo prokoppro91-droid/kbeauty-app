@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, type MotionValue } from "framer-motion
 
 /* Безперервний «один кадр»: послідовність кадрів малюється на canvas за скролом
    (техніка Apple) — масляно-гладке скрабування без ривків відео-кодека. */
-const FRAMES = 95;
+const FRAMES = 107;
 const frameSrc = (i: number) => `${import.meta.env.BASE_URL}cine/f${String(i).padStart(3, "0")}.webp`;
 
 /* текст сцени поверх полотна */
