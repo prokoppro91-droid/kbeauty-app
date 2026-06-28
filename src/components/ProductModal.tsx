@@ -123,7 +123,7 @@ export function ProductModal({ product, onClose }: { product: Product | null; on
                     className={`inline-flex h-12 items-center gap-2 rounded-[var(--r-md)] px-6 text-[15px] font-bold transition-colors ${
                       added ? "bg-mint text-[var(--ok)]" : "text-[var(--on-brand)] shadow-[var(--glow)]"
                     }`}
-                    style={added ? undefined : { background: "var(--grad-brand)" }}
+                    style={added ? undefined : { background: "var(--brand)" }}
                   >
                     {added ? <Check size={18} /> : <ShoppingBag size={18} />}
                     {added ? "Додано" : "У кошик"}

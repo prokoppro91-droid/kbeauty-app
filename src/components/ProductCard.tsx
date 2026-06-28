@@ -1,9 +1,9 @@
 import { motion } from "framer-motion";
-import { Plus, Check, Heart, FlaskConical } from "lucide-react";
+import { Plus, Check, Heart } from "lucide-react";
 import type { Product } from "../data/products";
 import { emojiFor, canDecant, discPct, catName, uah } from "../lib/catalog";
 
-const badgeLabel: Record<string, string> = { hit: "Хіт", new: "Новинка", pro: "Преміум" };
+const badgeLabel: Record<string, string> = { hit: "Бестселер", new: "Новинка", pro: "Преміум" };
 
 export function ProductCard({
   p,
@@ -25,84 +25,64 @@ export function ProductCard({
 
   return (
     <motion.article
-      className="glass group relative flex h-full flex-col overflow-hidden rounded-[var(--r-lg)] shadow-[var(--e-2)]"
-      whileHover={{ y: -6, boxShadow: "var(--e-3)" }}
-      transition={{ type: "spring", stiffness: 320, damping: 22 }}
+      className="group flex h-full flex-col overflow-hidden rounded-[var(--r-lg)] bg-snow"
+      whileHover={{ y: -3 }}
+      transition={{ duration: 0.344, ease: "easeOut" }}
     >
-      {/* зображення / емодзі-фолбек */}
+      {/* зображення на fog */}
       <button
         type="button"
         onClick={() => onOpen?.(p.id)}
-        className="relative block h-[184px] w-full overflow-hidden bg-[radial-gradient(120%_95%_at_50%_0%,var(--brand-soft)_0%,transparent_62%),linear-gradient(135deg,var(--accent-soft),var(--surface-2))] text-left"
+        className="relative block aspect-square w-full overflow-hidden bg-fog text-left"
         aria-label={`Відкрити ${p.name}`}
       >
-        <span className="absolute inset-0 grid place-items-center text-[46px] transition-transform duration-[400ms] ease-[cubic-bezier(.2,.7,.2,1)] group-hover:scale-[1.08]">
+        <span className="absolute inset-0 grid place-items-center text-[72px] transition-transform duration-[600ms] ease-out group-hover:scale-[1.06]">
           {emojiFor(p)}
         </span>
-
-        {discount > 0 && (
-          <span className="absolute left-3 top-3 rounded-[var(--r-pill)] bg-[#e74c3c] px-2 py-1 text-[10px] font-extrabold tracking-wide text-white shadow-[0_4px_12px_rgba(231,76,60,.32)]">
-            −{discount}%
-          </span>
+        {p.badge && (
+          <span className={`badge badge--${p.badge} absolute left-5 top-5`}>{badgeLabel[p.badge] ?? p.badge}</span>
         )}
-        <span className="glass absolute bottom-3 left-3 rounded-[var(--r-pill)] px-2.5 py-1 text-[11px] font-bold text-ink">
-          {p.brand}
-        </span>
-        {p.badge && <span className={`badge badge--${p.badge} absolute right-3 top-3`}>{badgeLabel[p.badge] ?? p.badge}</span>}
-
-        <span className="pointer-events-none absolute bottom-3 right-3 translate-y-2 rounded-[var(--r-pill)] bg-[rgba(43,38,34,.86)] px-3 py-1.5 text-[11.5px] font-semibold text-white opacity-0 backdrop-blur-sm transition-all duration-200 group-hover:translate-y-0 group-hover:opacity-100 max-[760px]:hidden">
-          👁 Швидкий перегляд
-        </span>
+        <button
+          type="button"
+          onClick={(e) => { e.stopPropagation(); onFav?.(p.id); }}
+          aria-label={faved ? "Прибрати з обраного" : "В обране"}
+          className={`absolute right-4 top-4 grid h-9 w-9 place-items-center rounded-full transition-colors ${faved ? "text-[var(--fav)]" : "text-graphite hover:text-ink"}`}
+        >
+          <Heart size={18} className={faved ? "fill-[var(--fav)]" : ""} />
+        </button>
       </button>
 
       {/* тіло */}
-      <div className="flex flex-1 flex-col p-[var(--sp-4)]">
-        <span className="text-[11px] font-bold uppercase tracking-wide text-[var(--brand-strong)]">
-          {catName(p.cat)}
-        </span>
+      <div className="flex flex-1 flex-col gap-1 px-5 pb-5 pt-4">
+        <span className="text-[12px] font-medium text-graphite">{p.brand}</span>
         <h3
           onClick={() => onOpen?.(p.id)}
-          className="mt-0.5 cursor-pointer font-display text-[15px] font-semibold leading-snug text-ink"
+          className="cursor-pointer text-[17px] font-semibold leading-snug text-ink"
+          style={{ letterSpacing: "-0.36px" }}
         >
           {p.name}
         </h3>
+        <span className="text-[13px] text-graphite">
+          {catName(p.cat)} · {p.vol}{decant ? " · на розпив" : ""}
+        </span>
 
-        <div className="mt-1 flex items-center gap-2 text-[12px] text-muted">
-          <span>{p.vol}</span>
-          {decant && (
-            <span className="inline-flex items-center gap-1 rounded-[var(--r-pill)] border border-[#bfe3d2] bg-mint px-2 py-0.5 text-[10px] font-extrabold text-[var(--ok)]">
-              <FlaskConical size={11} /> на розпив
-            </span>
-          )}
-        </div>
-
-        <div className="mt-auto flex items-center gap-2 pt-3">
-          <div className="flex-1 font-display text-[20px] font-bold text-ink">
-            {uah(p.price)} <span className="text-[13px] font-semibold text-muted">грн</span>
-            {p.old && <span className="ml-1.5 text-[13px] font-normal text-[#b9aa92] line-through">{uah(p.old)}</span>}
+        <div className="mt-auto flex items-center justify-between pt-4">
+          <div>
+            <span className="text-[19px] font-semibold text-ink">{uah(p.price)} грн</span>
+            {p.old && (
+              <span className="ml-2 text-[13px] text-graphite line-through">{uah(p.old)}</span>
+            )}
+            {discount > 0 && <span className="ml-2 text-[13px] font-semibold text-[#b64400]">−{discount}%</span>}
           </div>
-
-          <motion.button
-            type="button"
-            onClick={() => onFav?.(p.id)}
-            whileTap={{ scale: 0.85 }}
-            aria-label={faved ? "Прибрати з обраного" : "В обране"}
-            className={`grid h-9 w-9 place-items-center rounded-full transition-colors ${faved ? "text-[var(--fav)]" : "text-[#dac9bc] hover:text-[var(--fav)]"}`}
-          >
-            <Heart size={18} className={faved ? "fill-[var(--fav)]" : ""} />
-          </motion.button>
-
           <motion.button
             type="button"
             onClick={() => onAdd?.(p.id)}
-            whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.9 }}
-            transition={{ type: "spring", stiffness: 500, damping: 18 }}
+            transition={{ duration: 0.1 }}
             aria-label={inCart ? "У кошику" : "Додати в кошик"}
-            className={`grid h-[44px] w-[44px] place-items-center rounded-[var(--r-md)] text-[var(--on-brand)] transition-colors ${inCart ? "bg-mint !text-[var(--ok)]" : "shadow-[var(--glow)]"}`}
-            style={inCart ? undefined : { background: "var(--grad-brand)" }}
+            className={`grid h-9 w-9 place-items-center rounded-full text-white transition-colors ${inCart ? "bg-ink" : "bg-brand hover:bg-[#0077ed]"}`}
           >
-            {inCart ? <Check size={20} /> : <Plus size={20} />}
+            {inCart ? <Check size={18} /> : <Plus size={18} />}
           </motion.button>
         </div>
       </div>

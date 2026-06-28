@@ -112,7 +112,7 @@ export function Checkout({ open, onClose }: { open: boolean; onClose: () => void
                   <div className="inline-flex gap-1 rounded-[var(--r-pill)] border border-line bg-surface-2 p-[5px]">
                     {([["ua", "🇺🇦 По Україні"], ["intl", "✈️ За кордон"]] as [Delivery, string][]).map(([v, l]) => (
                       <button key={v} onClick={() => setF({ ...f, delivery: v })}
-                        style={f.delivery === v ? { background: "var(--grad-brand)" } : undefined}
+                        style={f.delivery === v ? { background: "var(--brand)" } : undefined}
                         className={`h-9 flex-1 rounded-[var(--r-pill)] px-4 text-[13px] font-bold transition-colors ${f.delivery === v ? "text-[var(--on-brand)]" : "text-muted hover:text-ink"}`}>
                         {l}
                       </button>
@@ -134,7 +134,7 @@ export function Checkout({ open, onClose }: { open: boolean; onClose: () => void
                 {touched && rows.length === 0 && <p className="text-[12px] text-[#e74c3c]">Кошик порожній.</p>}
 
                 <motion.button whileTap={{ scale: 0.98 }} onClick={submit} disabled={rows.length === 0}
-                  style={{ background: "var(--grad-brand)" }}
+                  style={{ background: "var(--brand)" }}
                   className="flex h-12 w-full items-center justify-center gap-2 rounded-[var(--r-md)] text-[15px] font-bold text-[var(--on-brand)] shadow-[var(--glow)] disabled:opacity-50">
                   Підтвердити замовлення →
                 </motion.button>

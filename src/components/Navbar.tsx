@@ -16,24 +16,25 @@ export function Navbar({
 
   return (
     <div className="glass sticky top-0 z-40 border-x-0 border-t-0">
-      <div className="wrap flex h-[68px] items-center gap-4">
-        <a href="#top" className="flex shrink-0 items-center gap-2.5">
-          <span
-            className="grid h-10 w-10 place-items-center rounded-[var(--r-md)] font-display text-[15px] font-bold text-[var(--on-brand)] shadow-[var(--glow)]"
-            style={{ background: "var(--grad-brand)" }}
-          >
-            KB
-          </span>
-          <strong className="hidden font-display text-[18px] sm:inline">K-Beauty Profi</strong>
+      <div className="wrap flex h-[52px] items-center gap-5">
+        <a href="#top" className="flex shrink-0 items-center gap-2 text-[17px] font-semibold tracking-[-.4px] text-ink">
+          <span className="grid h-6 w-6 place-items-center rounded-[6px] bg-ink text-[11px] font-bold text-snow">K</span>
+          K-Beauty Profi
         </a>
 
-        <label className="relative ml-auto w-full max-w-[420px]">
-          <Search size={16} className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-muted" />
+        <nav className="ml-2 hidden gap-6 text-[12px] text-graphite md:flex">
+          <a href="#catalog" className="transition-colors hover:text-ink">Каталог</a>
+          <a href="#feature-decant" className="transition-colors hover:text-ink">Розпив</a>
+          <a href="#feature-pro" className="transition-colors hover:text-ink">Професійне</a>
+        </nav>
+
+        <label className="relative ml-auto w-full max-w-[300px]">
+          <Search size={15} className="pointer-events-none absolute left-3.5 top-1/2 -translate-y-1/2 text-graphite" />
           <input
             value={query}
             onChange={(e) => onQuery(e.target.value)}
-            placeholder="Пошук засобу або бренду…"
-            className="glass h-11 w-full rounded-[var(--r-pill)] pl-11 pr-4 text-[14px] text-ink outline-none transition-colors focus:border-brand"
+            placeholder="Пошук"
+            className="h-9 w-full rounded-[var(--r-pill)] border border-line bg-snow pl-9 pr-4 text-[14px] text-ink outline-none transition-colors focus:border-brand"
           />
         </label>
 
@@ -43,19 +44,15 @@ export function Navbar({
           type="button"
           onClick={onCart}
           whileTap={{ scale: 0.92 }}
+          transition={{ duration: 0.1 }}
           aria-label="Кошик"
-          className="glass relative grid h-11 w-11 shrink-0 place-items-center rounded-full text-ink transition-colors hover:border-brand"
+          className="relative grid h-9 w-9 shrink-0 place-items-center rounded-full text-ink transition-colors hover:bg-fog"
         >
           <ShoppingBag size={18} />
           {count > 0 && (
-            <motion.span
-              key={count}
-              initial={{ scale: 0.5, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              className="absolute -right-1 -top-1 grid h-5 min-w-[20px] place-items-center rounded-full bg-[var(--brand-strong)] px-1 text-[11px] font-extrabold text-[var(--on-brand)]"
-            >
+            <span className="absolute -right-0.5 -top-0.5 grid h-[18px] min-w-[18px] place-items-center rounded-full bg-brand px-1 text-[10px] font-bold text-white">
               {count}
-            </motion.span>
+            </span>
           )}
         </motion.button>
       </div>

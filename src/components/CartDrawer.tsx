@@ -81,7 +81,7 @@ export function CartDrawer({ open, onClose, onCheckout }: { open: boolean; onClo
                   <motion.button
                     whileTap={{ scale: 0.98 }}
                     onClick={() => { onClose(); onCheckout(); }}
-                    style={{ background: "var(--grad-brand)" }}
+                    style={{ background: "var(--brand)" }}
                     className="flex h-12 w-full items-center justify-center gap-2 rounded-[var(--r-md)] text-[15px] font-bold text-[var(--on-brand)] shadow-[var(--glow)]"
                   >
                     <ShoppingBag size={18} /> Оформити замовлення

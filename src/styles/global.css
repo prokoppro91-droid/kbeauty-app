@@ -12,12 +12,7 @@
     font-size:var(--t-body);
     line-height:var(--lh-body);
     color:var(--text);
-    background:var(--surface-1);
-    background-image:
-      radial-gradient(40% 30% at 0% 0%, var(--brand-soft) 0%, transparent 55%),
-      radial-gradient(45% 35% at 100% 5%, var(--accent-soft) 0%, transparent 55%),
-      radial-gradient(50% 40% at 100% 100%, var(--brand-tint) 0%, transparent 60%);
-    background-attachment:fixed;
+    background:var(--fog);
     -webkit-font-smoothing:antialiased;
     text-rendering:optimizeLegibility;
     transition:background var(--dur-3) var(--ease), color var(--dur-3) var(--ease);
@@ -30,21 +25,22 @@
   ul{list-style:none}
 }
 
-/* Типографічні ролі */
-h1,h2,h3{font-family:var(--font-serif);font-weight:600;line-height:var(--lh-tight)}
-.t-display{font-family:var(--font-serif);font-weight:600;font-size:var(--t-display);line-height:var(--lh-tight)}
-.t-h1{font-size:var(--t-h1)}
-.t-h2{font-size:var(--t-h2)}
-.t-title{font-family:var(--font-sans);font-weight:600;font-size:var(--t-title);line-height:var(--lh-snug)}
-.t-lead{font-size:var(--t-lead);color:var(--text-muted);line-height:var(--lh-body)}
-.t-small{font-size:var(--t-small)}
+/* Типографічні ролі — Apple SF Pro, негативний трекінг за розміром */
+h1,h2,h3{font-family:var(--font-serif);font-weight:700;line-height:var(--lh-tight);letter-spacing:var(--ls-h2)}
+.t-display{font-family:var(--font-serif);font-weight:700;font-size:var(--t-display);line-height:1.04;letter-spacing:var(--ls-display)}
+.t-h1{font-family:var(--font-serif);font-weight:700;font-size:var(--t-h1);line-height:var(--lh-snug);letter-spacing:var(--ls-h1)}
+.t-h2{font-family:var(--font-serif);font-weight:600;font-size:var(--t-h2);line-height:var(--lh-snug);letter-spacing:var(--ls-h2)}
+.t-title{font-family:var(--font-sans);font-weight:600;font-size:var(--t-title);line-height:var(--lh-snug);letter-spacing:var(--ls-title)}
+.t-lead{font-size:var(--t-lead);font-weight:400;color:var(--text-muted);line-height:1.4;letter-spacing:var(--ls-lead)}
+.t-small{font-size:var(--t-small);letter-spacing:-.04px}
 .overline{
-  font-size:var(--t-overline);font-weight:700;letter-spacing:var(--tracking-overline);
-  text-transform:uppercase;color:var(--brand-strong);
+  font-size:var(--t-body);font-weight:600;letter-spacing:var(--ls-body);
+  text-transform:none;color:var(--brand);
 }
+body{letter-spacing:var(--ls-body)}
 .text-muted{color:var(--text-muted)}
 .measure{max-width:var(--measure)}
-.measure-wide{max-width:16ch}
+.measure-wide{max-width:18ch}
 
 /* Доступність: один фокус-стиль на весь застосунок */
 :focus-visible{outline:none;box-shadow:var(--ring);border-radius:var(--r-xs)}
@@ -67,20 +63,20 @@ h1,h2,h3{font-family:var(--font-serif);font-weight:600;line-height:var(--lh-tigh
 @keyframes sk{to{background-position:-200% 0}}
 @media(prefers-reduced-motion){.skeleton{animation:none}}
 
-/* Frosted-glass поверхня */
+/* Frosted-контрол (лише навігація/оверлеї) */
 .glass{
   background:var(--glass);
-  backdrop-filter:blur(var(--glass-blur)) saturate(1.4);
-  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(1.4);
+  backdrop-filter:blur(var(--glass-blur)) saturate(1.6);
+  -webkit-backdrop-filter:blur(var(--glass-blur)) saturate(1.6);
   border:1px solid var(--glass-brd);
 }
-.glow{box-shadow:var(--glow)}
-.text-gradient{
-  background:var(--grad-brand);-webkit-background-clip:text;background-clip:text;
-  -webkit-text-fill-color:transparent;color:transparent;
-}
+.text-gradient{color:var(--brand)}
 
-/* Плавне «дихання» декоративних блобів */
-@keyframes floaty{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(0,-18px,0) scale(1.05)}}
-.blob{position:absolute;border-radius:50%;filter:blur(42px);pointer-events:none;will-change:transform;animation:floaty 9s var(--ease-inout) infinite}
-@media(prefers-reduced-motion){.blob{animation:none}}
+/* Приховати скролбар (горизонтальні полиці) */
+.no-sb{scrollbar-width:none;-ms-overflow-style:none}
+.no-sb::-webkit-scrollbar{display:none}
+
+/* Apple-смуги: чергування канви */
+.band-fog{background:var(--fog)}
+.band-snow{background:var(--snow)}
+.band-dark{background:var(--obsidian);color:#f5f5f7}

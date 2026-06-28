@@ -1,69 +1,65 @@
 /* =====================================================================
-   Базові UI-компоненти — Soft K-beauty (glass + градієнти)
+   UI-компоненти за Apple DESIGN.md — чисто, без тіней, azure CTA
    ===================================================================== */
 
 /* КНОПКА */
 .btn{
-  --h:48px;height:var(--h);padding:0 var(--sp-6);border-radius:var(--r-pill);
-  font-weight:700;font-size:var(--t-body);
-  display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-2);
+  --h:44px;height:var(--h);padding:0 var(--sp-5);border-radius:var(--r-pill);
+  font-family:var(--font-sans);font-weight:500;font-size:var(--t-body);letter-spacing:var(--ls-body);
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
   border:1px solid transparent;
-  transition:box-shadow var(--dur-2) var(--ease),transform var(--dur-2) var(--spring),background var(--dur-2) var(--ease),border-color var(--dur-2) var(--ease);
+  transition:background var(--dur-1) var(--ease),color var(--dur-1) var(--ease),opacity var(--dur-1) var(--ease);
   white-space:nowrap;
 }
-.btn--primary{background:var(--grad-brand);color:var(--on-brand);box-shadow:var(--glow)}
-.btn--primary:hover{box-shadow:0 12px 36px rgba(159,122,234,.5)}
-.btn--ghost{background:var(--glass);backdrop-filter:blur(10px);border-color:var(--glass-brd);color:var(--text)}
-.btn--ghost:hover{border-color:var(--brand);color:var(--brand-strong)}
-.btn--dark{background:var(--text);color:var(--surface)}
-.btn--dark:hover{filter:brightness(1.12)}
-.btn--sm{--h:40px;padding:0 var(--sp-4);font-size:var(--t-small)}
-.btn--lg{--h:56px;padding:0 var(--sp-8)}
-.btn:disabled{opacity:.5;cursor:not-allowed}
+.btn--primary{background:var(--brand);color:#fff}
+.btn--primary:hover{background:#0077ed}
+.btn--dark{background:var(--ink);color:#fff}
+.btn--dark:hover{background:#000}
+.btn--ghost{background:transparent;color:var(--brand)}
+.btn--ghost:hover{text-decoration:underline}
+.btn--sm{--h:36px;padding:0 var(--sp-4);font-size:var(--t-small)}
+.btn--lg{--h:52px;padding:0 var(--sp-8);font-size:1.1875rem}
+.btn:disabled{opacity:.4;cursor:not-allowed}
 
-/* ЧІП (фільтри/бренди/теги) */
+/* ЧІП (категорії) — Apple-сегмент: чиста пігулка, активна = ink */
 .chip{
-  height:40px;padding:0 var(--sp-5);border-radius:var(--r-pill);
-  font-weight:600;font-size:var(--t-small);
-  display:inline-flex;align-items:center;gap:var(--sp-2);
-  background:var(--glass);backdrop-filter:blur(10px);
-  border:1px solid var(--glass-brd);color:var(--text-muted);
-  transition:border-color var(--dur-2) var(--ease),color var(--dur-2) var(--ease),
-    background var(--dur-2) var(--ease),transform var(--dur-1) var(--spring),box-shadow var(--dur-2) var(--ease);
+  height:38px;padding:0 var(--sp-5);border-radius:var(--r-pill);
+  font-family:var(--font-sans);font-weight:500;font-size:var(--t-small);letter-spacing:-.04px;
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--snow);border:1px solid var(--border);color:var(--ink);
+  transition:background var(--dur-1) var(--ease),color var(--dur-1) var(--ease),border-color var(--dur-1) var(--ease);
 }
-.chip:hover{color:var(--brand-strong);border-color:var(--brand-soft);transform:translateY(-1px)}
-.chip[aria-pressed="true"],.chip.is-active{
-  background:var(--grad-brand);border-color:transparent;color:var(--on-brand);box-shadow:var(--glow)}
+.chip:hover{border-color:var(--border-strong)}
+.chip[aria-pressed="true"],.chip.is-active{background:var(--ink);border-color:var(--ink);color:#fff}
 
-/* БЕЙДЖ */
+/* БЕЙДЖ — Apple: простий текстовий лейбл, без пігулки */
 .badge{
-  font-weight:800;font-size:var(--t-overline);letter-spacing:.04em;text-transform:uppercase;
-  padding:var(--sp-1) var(--sp-3);border-radius:var(--r-pill);
+  font-family:var(--font-sans);font-weight:600;font-size:var(--t-overline);letter-spacing:-.26px;
+  color:var(--graphite);
 }
-.badge--hit{background:linear-gradient(135deg,#ffd6a5,#ffb4c6);color:#9a3d52}
-.badge--new{background:linear-gradient(135deg,#c7f0e0,#bfe0ff);color:var(--ok)}
-.badge--pro{background:var(--grad-soft);color:var(--accent-strong)}
-.badge--sale{background:linear-gradient(135deg,#ffc2d1,#ffb4c6);color:var(--danger)}
+.badge--hit{color:var(--ink)}
+.badge--new{color:var(--brand)}
+.badge--pro{color:var(--ink)}
+.badge--sale{color:var(--caution,#b64400)}
 
-/* КАРТКА (скляна поверхня) */
+/* КАРТКА — біла на fog-канві, радіус 28, без тіні */
 .card{
-  background:var(--glass);backdrop-filter:blur(var(--glass-blur)) saturate(1.4);
-  border:1px solid var(--glass-brd);border-radius:var(--r-lg);
-  box-shadow:var(--e-2);overflow:hidden;
-  transition:transform var(--dur-2) var(--spring),box-shadow var(--dur-2) var(--ease);
+  background:var(--snow);border:1px solid transparent;border-radius:var(--r-lg);overflow:hidden;
+  transition:transform var(--dur-3) var(--ease);
 }
-.card--hover:hover{transform:translateY(-6px);box-shadow:var(--e-3)}
-.card__body{padding:var(--sp-5)}
+.card--fog{background:var(--fog)}
+.card--hover:hover{transform:translateY(-2px)}
+.card__body{padding:var(--sp-6)}
 
 /* ІКОНКА (SVG) */
 .ic{width:1.15em;height:1.15em;display:inline-block;vertical-align:-.18em;
   fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
 .ic--fill{fill:currentColor;stroke:none}
 
-/* перемикач теми */
+/* перемикач теми — frosted-контрол */
 .theme-toggle{
-  width:42px;height:42px;border-radius:var(--r-pill);
-  background:var(--glass);backdrop-filter:blur(10px);border:1px solid var(--glass-brd);
-  display:grid;place-items:center;
-  transition:border-color var(--dur-2) var(--ease),transform var(--dur-1) var(--spring)}
-.theme-toggle:hover{border-color:var(--brand);transform:rotate(-12deg) scale(1.05)}
+  width:38px;height:38px;border-radius:var(--r-pill);
+  background:transparent;border:1px solid var(--border);
+  display:grid;place-items:center;color:var(--ink);
+  transition:background var(--dur-1) var(--ease),border-color var(--dur-1) var(--ease)}
+.theme-toggle:hover{background:var(--fog)}

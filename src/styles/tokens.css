@@ -1,97 +1,83 @@
 /* =====================================================================
-   K-BEAUTY PROFI — дизайн-токени (single source of truth)
-   Soft K-beauty: рожево-бузкова пастель, frosted-glass, м'які сяйва.
-   Світла/темна тема.
+   K-BEAUTY PROFI — дизайн-токени за Apple DESIGN.md (Referral Styles)
+   Чисто, кольоро-контрастна глибина (без тіней), SF Pro типографіка.
    ===================================================================== */
 :root{
-  /* БРЕНД — троянда + бузковий акцент */
-  --brand:#ec7fb0; --brand-strong:#e0608f; --brand-soft:#fbd5e6; --brand-tint:#fdeef5;
-  --accent:#b794f6; --accent-strong:#9f7aea; --accent-soft:#e6dcfb;
-  --peach:#ffd9c2;
+  /* БРЕНД / ІНТЕРАКТИВ — azure лише для головного CTA */
+  --brand:#0071e3; --brand-strong:#0066cc; --brand-soft:#e8f1fd; --brand-tint:#f0f7ff;
   --on-brand:#ffffff;
+  /* театральні градієнти Apple (повноекранні бекдропи) */
+  --grad-blush:linear-gradient(184deg, rgb(29,29,31) 18%, rgb(243,196,246) 44%, rgb(245,0,180) 76%, rgb(204,41,188) 96%);
+  --grad-indigo:linear-gradient(184deg, rgb(29,29,31) 20%, rgb(168,211,251) 43%, rgb(0,18,249) 76%, rgb(37,53,224) 95%);
 
-  /* ПОВЕРХНІ — майже-білі з рожевим підтоном */
-  --surface:#ffffff; --surface-1:#fdf3f8; --surface-2:#f9e9f2; --surface-3:#f3dcea;
+  /* НЕЙТРАЛІ */
+  --obsidian:#000000; --ink:#1d1d1f; --ash:#333333; --slate:#474747; --graphite:#707070;
+  --silver:#e8e8ed; --fog:#f5f5f7; --snow:#ffffff;
 
-  /* СКЛО (frosted-glass) */
-  --glass:rgba(255,255,255,.62); --glass-2:rgba(255,255,255,.45);
-  --glass-brd:rgba(255,255,255,.7); --glass-blur:18px;
+  /* СЕМАНТИЧНІ ПОВЕРХНІ (сумісність зі старими назвами змінних) */
+  --surface:#ffffff; --surface-1:#f5f5f7; --surface-2:#f5f5f7; --surface-3:#ececef;
+  --text:#1d1d1f; --text-muted:#707070; --text-subtle:#86868b;
+  --border:#e8e8ed; --border-strong:#d2d2d7;
 
-  /* ТЕКСТ */
-  --text:#3b2433; --text-muted:#8a6b7d; --text-subtle:#b69aaa;
+  /* frosted-контрол (лише оверлеї/селектори) */
+  --glass:rgba(255,255,255,.72); --glass-2:rgba(245,245,247,.7);
+  --glass-brd:rgba(0,0,0,.08); --glass-blur:20px;
+  --frost:rgba(210,210,215,.64);
 
-  /* МЕЖІ */
-  --border:#f4dded; --border-strong:#ecc8de;
+  /* СТАТУСИ */
+  --mint:#e3f7ee; --powder:#fdeef5; --pro:#6e6e73; --pro-bg:#f5f5f7;
+  --ok:#1d8a52; --warn:#b64400; --danger:#b64400; --tg:#0071e3; --fav:#e0245e;
+  --accent:#0071e3; --accent-strong:#0066cc;
 
-  /* ПАСТЕЛЬ / СТАТУСИ */
-  --mint:#e1f5ee; --powder:#fbe4ed; --pro:#9f7aea; --pro-bg:#efe7fc;
-  --ok:#2e9d7a; --warn:#d98a2b; --danger:#e05a76; --tg:#2aabee; --fav:#ec5f95;
-
-  /* ГРАДІЄНТИ */
-  --grad-brand:linear-gradient(135deg,var(--brand),var(--accent-strong));
-  --grad-soft:linear-gradient(135deg,var(--brand-soft),var(--accent-soft));
-  --grad-hero:
-    radial-gradient(60% 55% at 18% 18%, rgba(236,127,176,.42) 0%, transparent 62%),
-    radial-gradient(55% 50% at 85% 12%, rgba(183,148,246,.42) 0%, transparent 60%),
-    radial-gradient(60% 60% at 70% 88%, rgba(255,217,194,.5) 0%, transparent 60%),
-    radial-gradient(50% 50% at 25% 85%, rgba(170,214,255,.34) 0%, transparent 60%);
-
-  /* ТИПОГРАФІКА (8 ролей) */
-  --font-serif:"Fraunces","Cormorant Garamond",Georgia,serif;
-  --font-sans:"Quicksand","Jost","Inter",system-ui,sans-serif;
-  --t-display:clamp(2.5rem,5.4vw,4.5rem);
-  --t-h1:clamp(1.9rem,3.4vw,2.6rem);
-  --t-h2:clamp(1.5rem,2.6vw,1.95rem);
-  --t-title:1.125rem;
-  --t-lead:1.0625rem;
-  --t-body:0.9375rem;
-  --t-small:0.8125rem;
-  --t-overline:0.75rem;
-  --lh-tight:1.1; --lh-snug:1.3; --lh-body:1.6;
-  --tracking-overline:.14em;
+  /* ТИПОГРАФІКА — SF Pro (Inter як веб-фолбек), негативний трекінг за розміром */
+  --font-serif:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter",system-ui,sans-serif;
+  --font-sans:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter",system-ui,sans-serif;
+  --t-display:clamp(2.8rem,6.6vw,6rem);   /* 96px display */
+  --t-h1:clamp(2.2rem,4.4vw,3.5rem);      /* 56px heading-lg */
+  --t-h2:clamp(1.7rem,3vw,2.5rem);        /* 40px heading */
+  --t-title:1.5rem;                        /* 24px heading-sm */
+  --t-lead:1.25rem;                        /* 20px subheading (w300) */
+  --t-body:1.0625rem;                      /* 17px body */
+  --t-small:0.875rem;                      /* 14px body-sm */
+  --t-overline:0.75rem;                    /* 12px caption */
+  --lh-tight:1.05; --lh-snug:1.17; --lh-body:1.47;
+  --tracking-overline:.01em;
+  /* трекінг за роллю */
+  --ls-display:-2.11px; --ls-h1:-0.9px; --ls-h2:-0.6px; --ls-title:-0.36px;
+  --ls-lead:-0.2px; --ls-body:-0.1px;
 
   /* ВІДСТУПИ (4px) */
   --sp-1:4px; --sp-2:8px; --sp-3:12px; --sp-4:16px; --sp-5:20px; --sp-6:24px;
   --sp-8:32px; --sp-10:40px; --sp-12:48px; --sp-16:64px; --sp-20:80px; --sp-24:96px;
-  --section-y:clamp(48px,7vw,96px); --gutter:clamp(16px,4vw,22px);
+  --section-y:clamp(64px,9vw,120px); --gutter:clamp(16px,4vw,22px);
 
-  /* РАДІУСИ — м'якші, бульбашкові */
-  --r-xs:10px; --r-sm:14px; --r-md:20px; --r-lg:30px; --r-xl:40px; --r-pill:999px;
+  /* РАДІУСИ за Apple */
+  --r-xs:10px; --r-sm:12px; --r-md:18px; --r-lg:28px; --r-xl:28px; --r-btn:36px; --r-pill:999px;
 
-  /* ELEVATION — рожево-бузкові тіні */
-  --e-0:none;
-  --e-1:0 2px 8px rgba(224,96,143,.08);
-  --e-2:0 10px 26px rgba(224,96,143,.12);
-  --e-3:0 18px 44px rgba(183,148,246,.18);
-  --e-4:0 30px 70px rgba(183,148,246,.26);
-  --glow:0 8px 30px rgba(236,127,176,.45);
+  /* ELEVATION — нуль тіней; глибина кольором. Слабкі тіні лише для модалок/драверів. */
+  --e-0:none; --e-1:none; --e-2:none;
+  --e-3:0 8px 30px rgba(0,0,0,.12);
+  --e-4:0 30px 60px rgba(0,0,0,.18);
+  --glow:none;
 
-  /* МОУШН */
-  --dur-1:120ms; --dur-2:200ms; --dur-3:320ms; --dur-4:600ms;
-  --ease:cubic-bezier(.2,.7,.2,1);
-  --ease-inout:cubic-bezier(.65,.05,.36,1);
-  --spring:cubic-bezier(.34,1.56,.64,1);
+  /* МОУШН — стримано */
+  --dur-1:100ms; --dur-2:200ms; --dur-3:344ms; --dur-4:600ms;
+  --ease:ease; --ease-inout:ease-in-out; --spring:ease-out;
 
   /* ІНШЕ */
-  --maxw:1200px; --measure:64ch;
-  --ring:0 0 0 3px rgba(236,127,176,.5);
+  --maxw:1120px; --measure:60ch;
+  --ring:0 0 0 4px rgba(0,113,227,.4);
 }
 
 :root[data-theme="dark"]{
-  /* Глибокий сливово-баклажановий */
-  --surface:#241526; --surface-1:#160d18; --surface-2:#2a1a2d; --surface-3:#341f38;
-  --glass:rgba(52,31,56,.55); --glass-2:rgba(52,31,56,.4); --glass-brd:rgba(236,127,176,.22);
-  --text:#f6e8f1; --text-muted:#c0a6b8; --text-subtle:#8c7384;
-  --border:#3a2540; --border-strong:#4d3354;
-  --brand-soft:#5a2a44; --accent-soft:#3c2c5e; --on-brand:#ffffff;
-  --mint:#16291f; --powder:#321a26; --pro-bg:#2c2140;
-  --grad-hero:
-    radial-gradient(60% 55% at 18% 18%, rgba(236,127,176,.3) 0%, transparent 62%),
-    radial-gradient(55% 50% at 85% 12%, rgba(183,148,246,.32) 0%, transparent 60%),
-    radial-gradient(60% 60% at 70% 88%, rgba(255,150,110,.22) 0%, transparent 60%),
-    radial-gradient(50% 50% at 25% 85%, rgba(110,160,220,.22) 0%, transparent 60%);
-  --e-1:0 2px 8px rgba(0,0,0,.4); --e-2:0 10px 26px rgba(0,0,0,.45);
-  --e-3:0 18px 44px rgba(0,0,0,.5); --e-4:0 30px 70px rgba(0,0,0,.6);
-  --glow:0 8px 34px rgba(236,127,176,.5);
-  --ring:0 0 0 3px rgba(236,127,176,.55);
+  --surface:#1d1d1f; --surface-1:#000000; --surface-2:#1d1d1f; --surface-3:#2a2a2c;
+  --text:#f5f5f7; --text-muted:#a1a1a6; --text-subtle:#6e6e73;
+  --border:#2a2a2c; --border-strong:#3a3a3c;
+  --glass:rgba(29,29,31,.72); --glass-2:rgba(0,0,0,.6); --glass-brd:rgba(255,255,255,.1);
+  --frost:rgba(40,40,44,.64);
+  --fog:#000000; --snow:#1d1d1f; --silver:#2a2a2c;
+  --brand-soft:#102a44; --brand-tint:#0c1c2e;
+  --mint:#0f2a1c; --powder:#2a1420; --pro-bg:#1d1d1f;
+  --e-3:0 8px 30px rgba(0,0,0,.5); --e-4:0 30px 60px rgba(0,0,0,.6);
+  --ring:0 0 0 4px rgba(0,113,227,.55);
 }
