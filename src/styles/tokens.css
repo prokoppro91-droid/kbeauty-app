@@ -52,7 +52,7 @@
   --section-y:clamp(64px,9vw,120px); --gutter:clamp(16px,4vw,22px);
 
   /* РАДІУСИ за Apple */
-  --r-xs:10px; --r-sm:12px; --r-md:18px; --r-lg:28px; --r-xl:28px; --r-btn:36px; --r-pill:999px;
+  --r-xs:10px; --r-sm:12px; --r-md:18px; --r-lg:28px; --r-xl:28px; --r-btn:999px; --r-pill:999px;
 
   /* ELEVATION — нуль тіней; глибина кольором. Слабкі тіні лише для модалок/драверів. */
   --e-0:none; --e-1:none; --e-2:none;

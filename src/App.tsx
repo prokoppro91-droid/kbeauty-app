@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { Navbar } from "./components/Navbar";
-import { Hero } from "./features/Hero";
+import { Cinematic } from "./features/Cinematic";
 import { Shelf } from "./components/Shelf";
 import { DecantFeature, ProStage, Bento } from "./features/Features";
 import { Catalog } from "./features/Catalog";
@@ -21,9 +21,9 @@ function App() {
 
   return (
     <div id="top">
-      <Navbar query={query} onQuery={setQuery} onCart={() => setCartOpen(true)} />
+      <Cinematic onEnd={toCatalog} />
 
-      <Hero onCta={toCatalog} />
+      <Navbar query={query} onQuery={setQuery} onCart={() => setCartOpen(true)} />
 
       <section className="band-snow">
         <div className="wrap section">
