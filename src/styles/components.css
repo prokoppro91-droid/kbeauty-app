@@ -1,0 +1,62 @@
+/* =====================================================================
+   Базові UI-компоненти (єдині класи замість дублів)
+   ===================================================================== */
+
+/* КНОПКА */
+.btn{
+  --h:48px;height:var(--h);padding:0 var(--sp-6);border-radius:var(--r-pill);
+  font-weight:600;font-size:var(--t-body);
+  display:inline-flex;align-items:center;justify-content:center;gap:var(--sp-2);
+  border:1px solid transparent;transition:box-shadow var(--dur-2) var(--ease),background var(--dur-2) var(--ease);
+  white-space:nowrap;
+}
+.btn--primary{background:linear-gradient(135deg,var(--brand),var(--brand-strong));color:var(--on-brand)}
+.btn--primary:hover{box-shadow:var(--e-3)}
+.btn--ghost{background:var(--surface);border-color:var(--border);color:var(--text)}
+.btn--ghost:hover{border-color:var(--brand)}
+.btn--dark{background:var(--text);color:var(--surface)}
+.btn--dark:hover{filter:brightness(1.1)}
+.btn--sm{--h:40px;padding:0 var(--sp-4);font-size:var(--t-small)}
+.btn--lg{--h:54px;padding:0 var(--sp-8)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+
+/* ЧІП (фільтри/бренди/теги) */
+.chip{
+  height:38px;padding:0 var(--sp-4);border-radius:var(--r-pill);
+  font-weight:600;font-size:var(--t-small);
+  display:inline-flex;align-items:center;gap:var(--sp-2);
+  background:var(--surface);border:1px solid var(--border);color:var(--text-muted);
+  transition:border-color var(--dur-2) var(--ease),color var(--dur-2) var(--ease),background var(--dur-2) var(--ease);
+}
+.chip:hover{border-color:var(--brand-soft);color:var(--text)}
+.chip[aria-pressed="true"],.chip.is-active{background:var(--brand-tint);border-color:var(--brand);color:var(--text)}
+
+/* БЕЙДЖ */
+.badge{
+  font-weight:800;font-size:var(--t-overline);letter-spacing:.04em;text-transform:uppercase;
+  padding:var(--sp-1) var(--sp-2);border-radius:var(--r-pill);
+}
+.badge--hit{background:#ffe2c2;color:#a85b14}
+.badge--new{background:var(--mint);color:var(--ok)}
+.badge--sale{background:#ffe3e3;color:var(--danger)}
+
+/* КАРТКА (поверхня) */
+.card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--r-lg);
+  box-shadow:var(--e-2);overflow:hidden;
+  transition:transform var(--dur-2) var(--ease),box-shadow var(--dur-2) var(--ease);
+}
+.card--hover:hover{transform:translateY(-4px);box-shadow:var(--e-3)}
+.card__body{padding:var(--sp-5)}
+
+/* ІКОНКА (SVG) */
+.ic{width:1.15em;height:1.15em;display:inline-block;vertical-align:-.18em;
+  fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.ic--fill{fill:currentColor;stroke:none}
+
+/* перемикач теми */
+.theme-toggle{
+  width:42px;height:42px;border-radius:var(--r-pill);
+  background:var(--surface-2);border:1px solid var(--border);
+  display:grid;place-items:center;transition:border-color var(--dur-2) var(--ease)}
+.theme-toggle:hover{border-color:var(--brand)}

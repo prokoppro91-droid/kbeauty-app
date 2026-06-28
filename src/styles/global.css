@@ -1,0 +1,63 @@
+/* =====================================================================
+   Базові стилі: reset + типографіка + focus + утиліти + skeleton
+   ===================================================================== */
+/* Reset у @layer base, щоб Tailwind-утиліти (bg-*, border-*) могли його перекривати */
+@layer base {
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  html,body{overflow-x:clip}
+
+  body{
+    font-family:var(--font-sans);
+    font-size:var(--t-body);
+    line-height:var(--lh-body);
+    color:var(--text);
+    background:var(--surface-1);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    transition:background var(--dur-3) var(--ease), color var(--dur-3) var(--ease);
+  }
+
+  img,svg,video{display:block;max-width:100%}
+  a{color:inherit;text-decoration:none}
+  button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+  input,select,textarea{font:inherit}
+  ul{list-style:none}
+}
+
+/* Типографічні ролі */
+h1,h2,h3{font-family:var(--font-serif);font-weight:600;line-height:var(--lh-tight)}
+.t-display{font-family:var(--font-serif);font-weight:600;font-size:var(--t-display);line-height:var(--lh-tight)}
+.t-h1{font-size:var(--t-h1)}
+.t-h2{font-size:var(--t-h2)}
+.t-title{font-family:var(--font-sans);font-weight:600;font-size:var(--t-title);line-height:var(--lh-snug)}
+.t-lead{font-size:var(--t-lead);color:var(--text-muted);line-height:var(--lh-body)}
+.t-small{font-size:var(--t-small)}
+.overline{
+  font-size:var(--t-overline);font-weight:700;letter-spacing:var(--tracking-overline);
+  text-transform:uppercase;color:var(--brand-strong);
+}
+.text-muted{color:var(--text-muted)}
+.measure{max-width:var(--measure)}
+.measure-wide{max-width:16ch}
+
+/* Доступність: один фокус-стиль на весь застосунок */
+:focus-visible{outline:none;box-shadow:var(--ring);border-radius:var(--r-xs)}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important}
+  html{scroll-behavior:auto}
+}
+
+/* Сітка-контейнер + ритм секцій */
+.wrap{max-width:var(--maxw);margin-inline:auto;padding-inline:var(--gutter)}
+.section{padding-block:var(--section-y)}
+.stack{display:flex;flex-direction:column}
+.row{display:flex;align-items:center}
+
+/* Skeleton-завантаження */
+.skeleton{
+  background:linear-gradient(100deg,var(--surface-2) 30%,var(--surface-3) 50%,var(--surface-2) 70%);
+  background-size:200% 100%;animation:sk 1.2s var(--ease-inout) infinite;border-radius:var(--r-md);
+}
+@keyframes sk{to{background-position:-200% 0}}
+@media(prefers-reduced-motion){.skeleton{animation:none}}
