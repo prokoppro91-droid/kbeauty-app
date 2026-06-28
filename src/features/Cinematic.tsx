@@ -3,7 +3,7 @@ import { motion, useScroll, useTransform, type MotionValue } from "framer-motion
 
 /* Безперервний «один кадр»: послідовність кадрів малюється на canvas за скролом
    (техніка Apple) — масляно-гладке скрабування без ривків відео-кодека. */
-const FRAMES = 107;
+const FRAMES = 109;
 const frameSrc = (i: number) => `${import.meta.env.BASE_URL}cine/f${String(i).padStart(3, "0")}.webp`;
 
 /* текст сцени поверх полотна */
@@ -101,9 +101,9 @@ export function Cinematic({ onEnd }: { onEnd: () => void }) {
       <div className="sticky top-0 h-screen overflow-hidden">
         <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" />
 
-        {/* скрім для читабельності тексту */}
+        {/* скрім для читабельності тексту — темніша центральна смуга під заголовок */}
         <div className="pointer-events-none absolute inset-0"
-          style={{ background: "linear-gradient(180deg,rgba(8,6,12,.45) 0%,rgba(8,6,12,.12) 40%,rgba(8,6,12,.6) 100%)" }} />
+          style={{ background: "linear-gradient(180deg,rgba(8,6,12,.6) 0%,rgba(8,6,12,.18) 24%,rgba(8,6,12,.55) 50%,rgba(8,6,12,.18) 76%,rgba(8,6,12,.66) 100%)" }} />
 
         {/* бренд */}
         <div className="absolute left-1/2 top-7 z-10 -translate-x-1/2 text-[13px] font-semibold tracking-[0.35em] text-white/90">
